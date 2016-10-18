@@ -11,7 +11,7 @@ var slid = new SlidModel();
 slid.id = utils.generateUUID();
 slid.type = "myType";
 slid.title = "myTitle";
-slid.fileName = slid.id + ".txt";
+slid.filename = slid.id + ".txt";
 slid.setData("It Works !");
 
 console.dir(SlidModel);
@@ -64,7 +64,7 @@ function test4(slid) {
 			console.error(err);
 		} else {
 			console.dir("Slid supprimee");
-			testErr(slid);
+			///testErr(slid);
 		}
 	});
 

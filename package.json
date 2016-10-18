@@ -2,14 +2,16 @@
   "name": "tp_node",
   "version": "1.0.0",
   "description": "",
-  "scripts":{
-  	"test":"echo \"Error: test not specified\" && exit &",
-  	"start":"node app.js"
+  "scripts": {
+    "test": "echo \"Error: test not specified\" && exit &",
+    "start": "node app.js"
   },
-  "private":true,
+  "private": true,
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "multer": "^1.2.0"
   }
 }

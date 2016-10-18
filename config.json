@@ -1,1 +1,7 @@
-{"port":1337}
+{
+
+	"port":1337,
+	"contentDirectory": "./uploads",
+	"presentationDirectory": "./presentation_content"
+
+}
