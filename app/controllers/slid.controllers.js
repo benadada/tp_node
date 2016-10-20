@@ -1,9 +1,8 @@
 'use strict';
 
 var SlidModel=require("./../models/slid.model.js");
-var CONFIG = require("./../../config.json");
 var utils = require("./../utils/utils.js");
-process.env.CONFIG = JSON.stringify(CONFIG);
+var CONFIG = JSON.parse(process.env.CONFIG);
 var getListFile = require("./../../myListFile.js");
 var path = require("path");
 
@@ -58,6 +57,7 @@ function create(param, callback){
 }
 
 function read(id, callback){
+
     SlidModel.read(id, function(err, slid){
         if(err){
             return callback(err);

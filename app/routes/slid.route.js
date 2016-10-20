@@ -4,7 +4,7 @@
 var express = require("express");
 var router = express.Router();
 
-var CONFIG = require("./../../config.json");
+var CONFIG = JSON.parse(process.env.CONFIG);
 
 var SlidController = require("./../controllers/slid.controllers.js");
 var multer = require("multer");
@@ -30,7 +30,9 @@ var upload = multer({ storage: storage });
 
 //cree slide avec information dans la requete
 router.post("/slids", upload.single("file"), function(request, response){ 
+	console.log("originalname :" + request.file.originalname);
 	var ofname = request.file.originalname;
+
 	var fname = request.file.filename;
 	var titre = ofname.substr(0, ofname.lastIndexOf('.'));
 	var id = fname.substr(0, fname.lastIndexOf('.'));
@@ -57,7 +59,7 @@ router.post("/slids", upload.single("file"), function(request, response){
 	})
 
 
-router.get("/slids", upload.single("file"), function(request, response){
+router.get("/slids", function(request, response){
 
 	SlidController.list(function(err, listSlid){
 		if(err){
@@ -78,6 +80,7 @@ router.get("/slids", upload.single("file"), function(request, response){
 router.get("/slids/:id", function(request, response) {
 
 	var id = request.url.split("/slids/");
+	console.log("idddd : " + id[1]);
 	SlidController.read(id[1], function (err, slid) {
 		if (err) {
 			response.status(400).send("Slid not available. Cause: " + err);
@@ -86,7 +89,7 @@ router.get("/slids/:id", function(request, response) {
 			response.json(JSON.parse(slid));
 		}
 	});
-});
+})
 module.exports = router;
 
 

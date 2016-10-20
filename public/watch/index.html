@@ -56,4 +56,11 @@
   <script src="js/application/LoginApp-s2.1.js"></script>
   <script src="js/controllers/LoginController-s2.2.js"></script>
   <script src="js/services/AuthService-s2.2.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect();
+    socket.on("connection", function (socket) {
+    socket.emit("data_comm",socket.id);
+    })
+</script>
 </body></html>

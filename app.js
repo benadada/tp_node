@@ -13,6 +13,7 @@ var utils = require("./app/utils/utils.js");
 var bodyParser = require('body-parser');
 var defaultRoute = require("./app/routes/default.route.js");
 var slidRoute = require("./app/routes/slid.route.js");
+var IOController = require("./app/controllers/io.controllers.js")
 
 
 var app = express();
@@ -63,7 +64,7 @@ app.use("/loadPres", function(request, response) {
 
 });	
 
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use("/savePres", function(request, response) {
 
 	var ob = request.body;
@@ -91,5 +92,7 @@ app.use("/savePres", function(request, response) {
 
 
 var server = http.createServer(app);
-console.log(CONFIG.port)
+console.log(CONFIG.port);
+IOController.listen(server);
+
 server.listen(CONFIG.port);

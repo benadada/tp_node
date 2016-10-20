@@ -1,9 +1,8 @@
-'use strict';
 
 var fs =require("fs");
-var CONFIG = require("./../../config.json");
-process.env.CONFIG = JSON.stringify(CONFIG);
-//var CONFIG = JSON.parse(process.env.CONFIG);
+//var CONFIG = require("./../../config.json");
+//process.env.CONFIG = JSON.stringify(CONFIG);
+var CONFIG = JSON.parse(process.env.CONFIG);
 
 function SlidModel (smodel){
 
@@ -61,11 +60,12 @@ SlidModel.create=function(smodel, callback){
 }
 
 
+
 SlidModel.read=function(id, callback){
 
 	var che=CONFIG.contentDirectory + "/" +id +".meta.json";
 	fs.readFile(che, function (err, data) {
-		if (err) return callback(err);
+		if (err) return callback(err); 
 		if(!data || err) return callback(err);
 		if(!id) return callback(err);
 		else{
@@ -75,8 +75,6 @@ SlidModel.read=function(id, callback){
 		callback(null, JSON.stringify(slid_ret));
 			}
 	});
-
-
 }
 SlidModel.update=function(smodel, callback){
 
@@ -132,21 +130,3 @@ SlidModel.read(id, function(err, data){
 }
 
 module.exports = SlidModel;
-
-
-//commencer par lire et ensuite faire les suppressions §§§§§
-/*	fs.unlink(CONFIG.contentDirectory + "/" + id +".meta.json", function(data,err){
-		if(err) return callback(err);
-		SlidModel.read(id, function(err, data){
-			if(err) return callback(err);
-			var slid=JSON.parse(data);
-			fs.unlink(CONFIG.contentDirectory + "/"+slid.filename,function(data, err){
-				if(err) return callback(err);
-				if (!data || err) return callback(err);
-				callback();
-			});
-		});
-
-	});
-}
-}*/
